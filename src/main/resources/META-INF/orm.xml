@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings version="1.0" xmlns="http://java.sun.com/xml/ns/persistence/orm">
+    <mapped-superclass access="FIELD" metadata-complete="false" class="org.axonframework.eventhandling.tokenstore.AbstractTokenEntry">
+        <attributes>
+            <basic name="token">
+                <column name="token"/>
+            </basic>
+        </attributes>
+    </mapped-superclass>
+    <mapped-superclass access="FIELD" metadata-complete="false" class="org.axonframework.eventhandling.AbstractEventEntry">
+        <attributes>
+            <basic name="metaData">
+                <column name="meta_data"/>
+            </basic>
+            <basic name="payload">
+                <column name="payload"/>
+            </basic>
+        </attributes>
+    </mapped-superclass>
+    <mapped-superclass access="FIELD" metadata-complete="false" class="org.axonframework.eventhandling.AbstractSequencedDomainEventEntry">
+        <attributes>
+            <id name="globalIndex">
+                <generated-value strategy="IDENTITY"/>
+            </id>
+        </attributes>
+    </mapped-superclass>
+</entity-mappings>

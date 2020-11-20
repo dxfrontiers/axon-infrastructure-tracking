@@ -1,0 +1,28 @@
+version: '3'
+services:
+    axondb:
+        image: "postgres"
+        ports:
+            - "5432:5432"
+        environment:
+            POSTGRES_PASSWORD: secret
+    pgadmin:
+        image: "dpage/pgadmin4"
+        ports:
+            - "9090:80"
+        volumes:
+            - ./pgadmin_servers.json:/pgadmin4/servers.json
+        environment:
+            PGADMIN_DEFAULT_EMAIL: admin@dxfrontiers
+            PGADMIN_DEFAULT_PASSWORD: secret
+        depends_on:
+            - axondb
+    middleware:
+        image: "dxfrontiers/axon-infrastructure-tracking:latest"
+        environment:
+            - SPRING_DATASOURCE_URL=jdbc:postgresql://axondb:5432/postgres
+            - SPRING_DATASOURCE_USERNAME=postgres
+            - SPRING_DATASOURCE_PASSWORD=secret
+        depends_on:
+           - axondb
+
