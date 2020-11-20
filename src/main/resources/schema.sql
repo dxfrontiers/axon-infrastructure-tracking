@@ -37,3 +37,9 @@ CREATE TABLE IF NOT EXISTS token_entry (
     owner VARCHAR(255) NULL,
     PRIMARY KEY (processor_name,segment)
 );
+
+CREATE TABLE IF NOT EXISTS singleton_aggregate_id (
+    aggregate_type VARCHAR(255) NOT NULL,
+    aggregate_id VARCHAR(255) NOT NULL,
+    PRIMARY KEY (aggregate_type)
+);
